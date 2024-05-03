@@ -91,7 +91,7 @@ exports.deleteCheese = async (req, res) => {
 
         await cheese.destroy();
 
-        res.status(204).json({ success: "Cheese removed" });
+        res.status(204).end();
     } catch (error) {
         console.error("Error deleting cheese:", error);
         res.status(500).json({ error: "Failed to delete cheese" });
