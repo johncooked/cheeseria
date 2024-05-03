@@ -11,13 +11,13 @@ exports.getStatus = async (req, res) => {
     } catch (error) {}
 };
 
-// Add Cheese
+// Add cheese
 exports.addCheese = async (req, res) => {
     try {
         console.log("Request body:", req.body);
-        const { name, image, pricePerKilo, color } = req.body;
+        const { name, image, pricePerKilo, colour } = req.body;
 
-        if (!name || !image || !pricePerKilo || !color) {
+        if (!name || !image || !pricePerKilo || !colour) {
             return res
                 .status(400)
                 .json({ error: "Missing required parameters" });
@@ -27,7 +27,7 @@ exports.addCheese = async (req, res) => {
             name,
             image,
             pricePerKilo,
-            color,
+            colour,
         });
 
         res.status(201).json(newCheese);
@@ -37,7 +37,7 @@ exports.addCheese = async (req, res) => {
     }
 };
 
-// Find Cheeses with Infinite Scrolling
+// Find cheeses
 exports.findCheeses = async (req, res) => {
     try {
         const { offset = 0, limit = 10 } = req.query;
@@ -51,5 +51,49 @@ exports.findCheeses = async (req, res) => {
     } catch (error) {
         console.error("Error finding cheeses:", error);
         res.status(500).json({ error: "Failed to find cheeses" });
+    }
+};
+
+// Update cheese
+exports.updateCheese = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, image, pricePerKilo, colour } = req.body;
+
+        const cheese = await Cheese.findByPk(id);
+        if (!cheese) {
+            return res.status(404).json({ error: "Cheese not found" });
+        }
+
+        cheese.name = name;
+        cheese.image = image;
+        cheese.pricePerKilo = pricePerKilo;
+        cheese.colour = colour;
+
+        await cheese.save();
+
+        res.status(200).json(cheese);
+    } catch (error) {
+        console.error("Error updating cheese:", error);
+        res.status(500).json({ error: "Failed to update cheese" });
+    }
+};
+
+// Delete Cheese
+exports.deleteCheese = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const cheese = await Cheese.findByPk(id);
+        if (!cheese) {
+            return res.status(404).json({ error: "Cheese not found" });
+        }
+
+        await cheese.destroy();
+
+        res.status(204).json({ success: "Cheese removed" });
+    } catch (error) {
+        console.error("Error deleting cheese:", error);
+        res.status(500).json({ error: "Failed to delete cheese" });
     }
 };

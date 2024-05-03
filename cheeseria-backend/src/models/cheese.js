@@ -14,7 +14,7 @@ const Cheese = sequelize.define("Cheese", {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
-    color: {
+    colour: {
         type: DataTypes.STRING,
         allowNull: false,
     },

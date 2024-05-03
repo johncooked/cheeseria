@@ -11,31 +11,31 @@ const seedCheeses = async () => {
                     name: "Cheddar",
                     image: "cheddar.jpg",
                     pricePerKilo: 10.99,
-                    color: "Yellow",
+                    colour: "Yellow",
                 },
                 {
                     name: "Brie",
                     image: "brie.jpg",
                     pricePerKilo: 15.99,
-                    color: "White",
+                    colour: "White",
                 },
                 {
                     name: "Gouda",
                     image: "gouda.jpg",
                     pricePerKilo: 12.99,
-                    color: "Yellow",
+                    colour: "Yellow",
                 },
                 {
                     name: "Blue Cheese",
                     image: "blue_cheese.jpg",
                     pricePerKilo: 20.99,
-                    color: "Blue",
+                    colour: "Blue",
                 },
                 {
                     name: "Parmesan",
                     image: "parmesan.jpg",
                     pricePerKilo: 18.99,
-                    color: "Yellow",
+                    colour: "Yellow",
                 },
             ]);
             console.log("Sample cheese data seeded successfully");

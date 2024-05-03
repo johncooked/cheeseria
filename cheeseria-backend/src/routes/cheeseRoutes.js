@@ -6,9 +6,15 @@ const cheeseController = require("../controllers/cheeseController");
 router.get("/status", cheeseController.getStatus);
 
 // Add cheese
-router.post("/add", cheeseController.addCheese);
+router.post("/", cheeseController.addCheese);
 
 // Find cheeses
 router.get("/", cheeseController.findCheeses);
+
+// Update cheese
+router.put("/:id", cheeseController.updateCheese);
+
+// Delete cheese
+router.delete("/:id", cheeseController.deleteCheese);
 
 module.exports = router;
