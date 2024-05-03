@@ -50,7 +50,7 @@ exports.findCheeses = async (req, res) => {
         res.status(200).json(cheeses);
     } catch (error) {
         console.error("Error finding cheeses:", error);
-        res.status(500).json({ error: "Failed to find cheeses" });
+        res.status(400).json({ error: "Failed to find cheeses" });
     }
 };
 

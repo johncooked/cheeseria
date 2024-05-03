@@ -1,11 +1,12 @@
 const express = require("express");
-const app = express();
 const cheeseRoutes = require("./routes/cheeseRoutes");
 const sequelize = require("./config/database");
 const seedCheeses = require("./config/seed");
 
+const app = express();
+
 // Middleware setup
-app.use(express.json()); // This line enables JSON body parsing
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Route setup
@@ -31,3 +32,5 @@ sequelize
     .catch((err) => {
         console.error("Database synchronization error:", err);
     });
+
+module.exports = app;

@@ -1,1 +1,5 @@
 node_modules/
+
+# Ignore database
+data/
+cheeseria-backend/data
