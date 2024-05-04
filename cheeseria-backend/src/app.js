@@ -2,15 +2,22 @@ const express = require("express");
 const cheeseRoutes = require("./routes/cheeseRoutes");
 const sequelize = require("./config/database");
 const seedCheeses = require("./config/seed");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
 
 const app = express();
+
+const swaggerDocument = YAML.load("../src/config/swagger.yaml");
 
 // Middleware setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve SwaggerUi
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // Route setup
-app.use("/api/cheeses", cheeseRoutes);
+app.use("/cheese", cheeseRoutes);
 
 // Error handling
 app.use((err, req, res, next) => {
