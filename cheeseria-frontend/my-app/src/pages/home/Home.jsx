@@ -11,9 +11,7 @@ const Home = () => {
     // Keep track of the 5 most recently viewed cheeses
     // Only track the current instance
     const [recentlyViewed, setRecentlyViewed] = useState([]);
-
     const { isLoggedIn } = useAuth();
-
     const [showModal, setShowModal] = useState(false);
     const [selectedCheese, setSelectedCheese] = useState(null);
 
