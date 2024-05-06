@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useAuth } from "../auth/AuthContext";
 
 import LoginModal from "../modal/LoginModal";
 import SignupModal from "../modal/SignupModal";
@@ -8,7 +9,9 @@ function TopNav() {
     // Simulate login functions for Admin
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    // Simulate login
+    const { isLoggedIn, login, logout } = useAuth();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -16,7 +19,7 @@ function TopNav() {
         const username = e.target.elements.username.value;
         const password = e.target.elements.password.value;
         if (username === "admin" && password === "password") {
-            setIsLoggedIn(true);
+            login();
             setShowLoginModal(false);
         } else {
             // Handle invalid credentials
@@ -25,7 +28,7 @@ function TopNav() {
     };
 
     const handleLogout = () => {
-        setIsLoggedIn(false);
+        logout();
     };
     ////////////////////////////////////
 

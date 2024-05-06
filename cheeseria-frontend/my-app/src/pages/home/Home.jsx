@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 
+import { useAuth } from "../../components/auth/AuthContext";
 import HeroSection from "../../components/hero/HeroSection";
 import CheeseCard from "../../components/cheesecard/CheeseCard";
 import PlaceholderCheeseCard from "../../components/placeholder/PlaceholderCheeseCard";
@@ -9,6 +10,8 @@ const Home = () => {
     // Keep track of the 5 most recently viewed cheeses
     // Only track the current instance
     const [recentlyViewed, setRecentlyViewed] = useState([]);
+
+    const { isLoggedIn } = useAuth();
 
     const handleCardClick = (cheese) => {
         console.log(cheese);
@@ -121,6 +124,7 @@ const Home = () => {
                             <CheeseCard
                                 cheese={cheese}
                                 onClick={handleCardClick}
+                                isAdmin={isLoggedIn}
                             />
                         </Col>
                     ))}
