@@ -1,8 +1,8 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import "./CheeseCard.css";
+import { Card, Button } from "react-bootstrap";
 
-const CheeseCard = ({ cheese, onClick }) => {
+const CheeseCard = ({ cheese, onClick, isAdmin }) => {
     const { name, img, pricePerKilo, color } = cheese;
 
     return (
@@ -15,6 +15,12 @@ const CheeseCard = ({ cheese, onClick }) => {
                     <br />
                     <strong>Color:</strong> {color}
                 </Card.Text>
+                {isAdmin && (
+                    <div>
+                        <Button variant="primary">Edit</Button>{" "}
+                        <Button variant="danger">Delete</Button>
+                    </div>
+                )}
             </Card.Body>
         </Card>
     );
