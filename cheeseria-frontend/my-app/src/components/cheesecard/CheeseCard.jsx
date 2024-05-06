@@ -17,7 +17,7 @@ const CheeseCard = ({ cheese, onClick, isAdmin }) => {
                 </Card.Text>
                 {isAdmin && (
                     <div>
-                        <Button variant="primary">Edit</Button>{" "}
+                        <Button variant="success">Edit</Button>{" "}
                         <Button variant="danger">Delete</Button>
                     </div>
                 )}
