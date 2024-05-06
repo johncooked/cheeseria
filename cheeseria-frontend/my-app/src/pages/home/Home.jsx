@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Col, Row, Dropdown } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 
 import HeroSection from "../../components/hero/HeroSection";
 import CheeseCard from "../../components/cheesecard/CheeseCard";

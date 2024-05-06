@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import "./CheeseCard.css";
 
 const CheeseCard = ({ cheese, onClick }) => {
-    const { id, name, img, pricePerKilo, color } = cheese;
+    const { name, img, pricePerKilo, color } = cheese;
 
     return (
         <Card onClick={() => onClick(cheese)}>
