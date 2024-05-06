@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Button } from "react-bootstrap";
 
 import { useAuth } from "../../components/auth/AuthContext";
 import HeroSection from "../../components/hero/HeroSection";
 import CheeseCard from "../../components/cheesecard/CheeseCard";
 import PlaceholderCheeseCard from "../../components/placeholder/PlaceholderCheeseCard";
+import PriceCalculator from "../../components/calculator/PriceCalculator";
 
 const Home = () => {
     // Keep track of the 5 most recently viewed cheeses
@@ -12,6 +13,9 @@ const Home = () => {
     const [recentlyViewed, setRecentlyViewed] = useState([]);
 
     const { isLoggedIn } = useAuth();
+
+    const [showModal, setShowModal] = useState(false);
+    const [selectedCheese, setSelectedCheese] = useState(null);
 
     const handleCardClick = (cheese) => {
         console.log(cheese);
@@ -23,7 +27,14 @@ const Home = () => {
         }
 
         setRecentlyViewed(updatedRecentlyViewed);
+        setSelectedCheese(cheese);
+        setShowModal(true);
         console.log("Recently viewed:", updatedRecentlyViewed);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setSelectedCheese(null);
     };
 
     const dummyCheeses = [
@@ -93,11 +104,11 @@ const Home = () => {
                     </Row>
                 </Container>
             ) : (
-                <Container>
+                <Container className="mb-3">
                     <p>No recently viewed items.</p>
                 </Container>
             )}
-            <Container style={{ paddingTop: "40px" }}>
+            <Container className="mb-3" style={{ paddingTop: "40px" }}>
                 <h2>Popular cheeses (Placeholder)</h2>
             </Container>
             <Container>
@@ -105,7 +116,7 @@ const Home = () => {
                     {generateCols(5)}
                 </Row>
             </Container>
-            <Container style={{ paddingTop: "40px" }}>
+            <Container className="mb-3" style={{ paddingTop: "40px" }}>
                 <h2>Try something new (Placeholder)</h2>
             </Container>
             <Container>
@@ -113,10 +124,25 @@ const Home = () => {
                     {generateCols(5)}
                 </Row>
             </Container>
-            <Container style={{ paddingTop: "40px" }}>
-                <h2 id="all cheeses">All cheeses</h2>
+            <Container className="mb-3" style={{ paddingTop: "40px" }}>
+                <h2 className="me-auto p-2" id="all cheeses">
+                    All cheeses
+                </h2>
             </Container>
-            <Container></Container>
+            {isLoggedIn && (
+                <Container className="mb-3">
+                    <Button className="me-2" variant="primary" size="sm">
+                        + Add new cheese
+                    </Button>
+                    <Button className="me-2" variant="success" size="sm">
+                        Bulk edit (Placeholder)
+                    </Button>
+                    <Button className="me-2" variant="danger" size="sm">
+                        - Bulk delete (Placeholder)
+                    </Button>
+                </Container>
+            )}
+
             <Container>
                 <Row xs={1} md={2} lg={5} className="g-4">
                     {dummyCheeses.map((cheese) => (
@@ -130,6 +156,11 @@ const Home = () => {
                     ))}
                 </Row>
             </Container>
+            <PriceCalculator
+                show={showModal}
+                onHide={handleCloseModal}
+                cheese={selectedCheese}
+            />
         </Container>
     );
 };
