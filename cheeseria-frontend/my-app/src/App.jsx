@@ -7,10 +7,10 @@ function App() {
         <Container fluid>
             <Col>
                 <Row>
-                    <TopNav></TopNav>
+                    <TopNav />
                 </Row>
                 <Row>
-                    <Home></Home>
+                    <Home />
                 </Row>
             </Col>
         </Container>
