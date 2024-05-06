@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import { Container, Col, Row } from "react-bootstrap";
+import HeroSection from "../../components/hero/HeroSection";
 
-const home = () => {
-  return (
-    <div>home</div>
-  )
-}
+const Home = () => {
+    return (
+        <Container>
+            <Col>
+                <Row>
+                    <HeroSection></HeroSection>
+                </Row>
+            </Col>
+        </Container>
+    );
+};
 
-export default home
+export default Home;

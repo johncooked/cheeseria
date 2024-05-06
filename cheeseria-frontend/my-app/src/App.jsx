@@ -1,14 +1,19 @@
+import { Container, Row, Col } from "react-bootstrap";
 import TopNav from "./components/topnav/TopNav";
+import Home from "./pages/home/Home";
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header"></header>
-            <div className="navigaton">
-                <TopNav />
-            </div>
-            <div className="content-container"></div>
-        </div>
+        <Container fluid>
+            <Col>
+                <Row>
+                    <TopNav></TopNav>
+                </Row>
+                <Row>
+                    <Home></Home>
+                </Row>
+            </Col>
+        </Container>
     );
 }
 
