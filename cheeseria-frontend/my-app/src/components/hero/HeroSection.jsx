@@ -18,12 +18,13 @@ function HeroSection() {
                                 Browse our wide selection of cheeses from around
                                 the world.
                             </p>
-                            <Button variant="warning" size="lg">
-                                Browse All Cheese
-                            </Button>
+                            <a href="#all cheeses">
+                                <Button variant="warning" size="lg">
+                                    Browse All Cheese
+                                </Button>
+                            </a>
                         </Carousel.Caption>
                     </Carousel.Item>
-                    {/* Add more Carousel.Items for additional slides */}
                 </Carousel>
             </Container>
         </section>

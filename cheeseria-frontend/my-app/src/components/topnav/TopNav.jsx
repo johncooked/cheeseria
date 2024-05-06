@@ -36,6 +36,7 @@ function TopNav() {
                 expand="lg"
                 className="bg-body-tertiary"
                 data-bs-theme="light"
+                fixed="top"
             >
                 <Container>
                     <Navbar.Brand href="#">PZ Cheeseria</Navbar.Brand>
