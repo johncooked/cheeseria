@@ -57,10 +57,21 @@ exports.findCheeses = async (req, res) => {
 // Update cheese
 exports.updateCheese = async (req, res) => {
     try {
+        console.log(req);
         const { id } = req.params;
+
+        console.log("ID:", id);
+
         const { name, image, pricePerKilo, colour } = req.body;
 
+        console.log("Name", name);
+        console.log("pricePerKilo", pricePerKilo);
+        console.log("colour", colour);
+
         const cheese = await Cheese.findByPk(id);
+
+        console.log("cheese", cheese);
+
         if (!cheese) {
             return res.status(404).json({ error: "Cheese not found" });
         }
@@ -95,5 +106,28 @@ exports.deleteCheese = async (req, res) => {
     } catch (error) {
         console.error("Error deleting cheese:", error);
         res.status(500).json({ error: "Failed to delete cheese" });
+    }
+};
+
+// Upload image for cheese
+exports.uploadImage = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { path } = req.file; // Path where the uploaded file is stored
+        // Assuming you have a method to find cheese by ID
+        const cheese = await Cheese.findByPk(id);
+        if (!cheese) {
+            return res.status(404).json({ error: "Cheese not found" });
+        }
+        // Update the cheese with the image URL
+        cheese.image = path; // You may want to store the relative or absolute path here
+        await cheese.save();
+        res.status(200).json({
+            message: "Image uploaded successfully",
+            imageUrl: path,
+        });
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        res.status(500).json({ error: "Failed to upload image" });
     }
 };

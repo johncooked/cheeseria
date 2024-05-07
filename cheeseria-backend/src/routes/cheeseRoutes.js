@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 const cheeseController = require("../controllers/cheeseController");
+
+// Setup multer
+const upload = multer({ dest: "uploads/" });
 
 // Test endpoint
 router.get("/status", cheeseController.getStatus);

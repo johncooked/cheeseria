@@ -8,7 +8,7 @@ const Cheese = sequelize.define("Cheese", {
     },
     image: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     pricePerKilo: {
         type: DataTypes.FLOAT,

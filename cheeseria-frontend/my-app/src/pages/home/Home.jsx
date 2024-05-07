@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
 
 import { useAuth } from "../../components/auth/AuthContext";
@@ -8,11 +8,14 @@ import PlaceholderCheeseCard from "../../components/placeholder/PlaceholderChees
 import PriceCalculator from "../../components/calculator/PriceCalculator";
 
 const Home = () => {
+    // Current cheeses fetched from api
+    const [cheeses, setCheeses] = useState([]);
     // Keep track of the 5 most recently viewed cheeses
     // Only track the current instance
     const [recentlyViewed, setRecentlyViewed] = useState([]);
+    // Track admin auth state
     const { isLoggedIn } = useAuth();
-    const [showModal, setShowModal] = useState(false);
+    const [showCalc, setShowCalc] = useState(false);
     const [selectedCheese, setSelectedCheese] = useState(null);
 
     const handleCardClick = (cheese) => {
@@ -26,52 +29,32 @@ const Home = () => {
 
         setRecentlyViewed(updatedRecentlyViewed);
         setSelectedCheese(cheese);
-        setShowModal(true);
+        setShowCalc(true);
         console.log("Recently viewed:", updatedRecentlyViewed);
     };
 
-    const handleCloseModal = () => {
-        setShowModal(false);
+    const handleCloseCalc = () => {
+        setShowCalc(false);
         setSelectedCheese(null);
     };
 
-    const dummyCheeses = [
-        {
-            id: 1,
-            name: "Cheddar",
-            img: "https://via.placeholder.com/150",
-            pricePerKilo: 10.99,
-            color: "Yellow",
-        },
-        {
-            id: 2,
-            name: "Brie",
-            img: "https://via.placeholder.com/150",
-            pricePerKilo: 15.99,
-            color: "White",
-        },
-        {
-            id: 3,
-            name: "Gouda",
-            img: "https://via.placeholder.com/150",
-            pricePerKilo: 12.49,
-            color: "Yellow",
-        },
-        {
-            id: 4,
-            name: "Gouda",
-            img: "https://via.placeholder.com/150",
-            pricePerKilo: 12.49,
-            color: "Yellow",
-        },
-        {
-            id: 5,
-            name: "Gouda",
-            img: "https://via.placeholder.com/150",
-            pricePerKilo: 12.49,
-            color: "Yellow",
-        },
-    ];
+    // Fetch data from API
+    useEffect(() => {
+        const fetchCheeses = async () => {
+            try {
+                const res = await fetch("/api/cheese");
+                console.log(res);
+                if (!res.ok) {
+                    throw new Error("Failed to fetch cheeses");
+                }
+                const data = await res.json();
+                setCheeses(data);
+            } catch (err) {
+                console.error("Error fetching cheeses:", err);
+            }
+        };
+        fetchCheeses();
+    }, []);
 
     // Render placeholder cards
     const generateCols = (count) => {
@@ -143,7 +126,7 @@ const Home = () => {
 
             <Container>
                 <Row xs={1} md={2} lg={5} className="g-4">
-                    {dummyCheeses.map((cheese) => (
+                    {cheeses.map((cheese) => (
                         <Col key={cheese.id}>
                             <CheeseCard
                                 cheese={cheese}
@@ -155,8 +138,8 @@ const Home = () => {
                 </Row>
             </Container>
             <PriceCalculator
-                show={showModal}
-                onHide={handleCloseModal}
+                show={showCalc}
+                onHide={handleCloseCalc}
                 cheese={selectedCheese}
             />
         </Container>

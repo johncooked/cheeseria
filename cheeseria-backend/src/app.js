@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const cheeseRoutes = require("./routes/cheeseRoutes");
 const sequelize = require("./config/database");
 const seedCheeses = require("./config/seed");
@@ -12,6 +13,8 @@ const swaggerDocument = YAML.load("../src/config/swagger.yaml");
 // Middleware setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors());
 
 // Serve SwaggerUi
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
