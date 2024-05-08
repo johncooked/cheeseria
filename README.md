@@ -19,4 +19,15 @@ This repository contains the code for the coding challenge.
 -   **Data Enrichment:** Expand the cheese data model to include additional details like description, country of origin, and common recipes, enabling the transformation of the application into a multipage one.
 -   **User Experience Enhancement:** Improve user experience by reducing reliance on modals and providing users with comprehensive cheese information on separate pages, enhancing exploration and engagement.
 -   **Feature Expansion:** Introduce features like search, filtering, and sorting based on enriched cheese data, further enhancing usability and functionality.
--   **API Key Protection:** If the application were to use a paid API key, I would implement mechanisms to protect the key, avoiding hardcoding it within the application. Techniques such as environment variables, server-side authentication, or token-based authentication could be explored to securely manage and utilize the API key, ensuring its confidentiality and integrity.
+-   **API Key Protection:** Techniques such as environment variables, server-side authentication, or token-based authentication could be explored to securely manage and utilize the API key, ensuring its confidentiality and integrity.
+
+## Run Instructions
+
+### Locally
+
+1. Have Node v20.10.0 installed.
+2. Clone the repository to your local machine.
+3. Navigate to the project directories `cheeseria-backend/src` and `cheeseria-frontend/my-app`.
+4. Install dependencies using `npm install` for both front-end and back-end.
+5. Start the front-end with `npm start` and backend with `node app.js`.
+6. Access the application in your web browser at the specified URL.
