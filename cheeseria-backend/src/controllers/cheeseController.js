@@ -62,6 +62,7 @@ exports.getCheeses = async (req, res) => {
 };
 
 // Update cheese
+// Does not check for empty strings.
 exports.updateCheese = async (req, res) => {
     try {
         const { id } = req.params;
@@ -94,6 +95,7 @@ exports.updateCheese = async (req, res) => {
 };
 
 // Delete Cheese
+// One problem with this is it doesn't delete the images from uploads directory.
 exports.deleteCheese = async (req, res) => {
     try {
         const { id } = req.params;
