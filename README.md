@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the code for the coding challenge. The backend will automatically create the first 5 cheeses upon start up. Click on the cheese you are interested in and the price calculator will popup. Login as Admin using `admin` and `password` to create, update and delete cheese.
+This repository contains the code for the coding challenge. The backend will automatically create the first 5 cheeses upon start up. Click on the cheese you are interested in and the price calculator will popup. Login as Admin using `admin` and `password` to create, update and delete cheeses.
 
 ## Tech Stack
 
