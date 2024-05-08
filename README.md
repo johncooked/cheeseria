@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the code for the coding challenge.
+This repository contains the code for the coding challenge. The backend will automatically create the first 5 cheeses upon start up. Click on the cheese you are interested in and the price calculator will popup. Login as Admin using `admin` and `password` to create, update and delete cheese.
 
 ## Tech Stack
 
@@ -27,7 +27,8 @@ This repository contains the code for the coding challenge.
 
 1. Have Node v20.10.0 installed.
 2. Clone the repository to your local machine.
-3. Navigate to the project directories `cheeseria-backend/src` and `cheeseria-frontend/my-app`.
-4. Install dependencies using `npm install` for both front-end and back-end.
-5. Start the front-end with `npm start` and backend with `node app.js`.
-6. Access the application in your web browser at the specified URL.
+3. Navigate to the project directories `cheeseria-backend` and `cheeseria-frontend/my-app`.
+4. Install dependencies using `npm install` for both frontend and backend.
+5. Start the front-end with `npm start`
+6. Start the back-end with `node app.js` after navigating to `cheeseria-backend/src`.
+7. Access the application in your web browser at the specified URL.
