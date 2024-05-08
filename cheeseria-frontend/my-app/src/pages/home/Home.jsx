@@ -6,6 +6,7 @@ import HeroSection from "../../components/hero/HeroSection";
 import CheeseCard from "../../components/cheesecard/CheeseCard";
 import PlaceholderCheeseCard from "../../components/placeholder/PlaceholderCheeseCard";
 import PriceCalculator from "../../components/calculator/PriceCalculator";
+import AddModal from "../../components/modal/AddModal";
 
 const Home = () => {
     // Current cheeses fetched from api
@@ -15,9 +16,12 @@ const Home = () => {
     const [recentlyViewed, setRecentlyViewed] = useState([]);
     // Track admin auth state
     const { isLoggedIn } = useAuth();
-    const [showCalc, setShowCalc] = useState(false);
     const [selectedCheese, setSelectedCheese] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
+
+    // Modal controls
+    const [showCalc, setShowCalc] = useState(false);
+    const [showAddModal, setShowAddModal] = useState(false);
 
     const handleCardClick = (cheese) => {
         console.log(cheese);
@@ -45,8 +49,13 @@ const Home = () => {
         console.log("Recently viewed:", updatedRecentlyViewed);
     };
 
-    const handleCloseCalc = () => {
+    const handleShowAddModal = () => {
+        setShowAddModal(true);
+    };
+
+    const handleCloseModal = () => {
         setShowCalc(false);
+        setShowAddModal(false);
         setSelectedCheese(null);
     };
 
@@ -126,7 +135,12 @@ const Home = () => {
             </Container>
             {isLoggedIn && (
                 <Container className="mb-3">
-                    <Button className="me-2" variant="primary" size="sm">
+                    <Button
+                        className="me-2"
+                        variant="primary"
+                        size="sm"
+                        onClick={handleShowAddModal}
+                    >
                         + Add new cheese
                     </Button>
                     <Button className="me-2" variant="success" size="sm">
@@ -155,8 +169,13 @@ const Home = () => {
             </Container>
             <PriceCalculator
                 show={showCalc}
-                onHide={handleCloseCalc}
+                onHide={handleCloseModal}
                 cheese={selectedCheese}
+            />
+            <AddModal
+                show={showAddModal}
+                handleClose={handleCloseModal}
+                setFormSubmitted={setFormSubmitted}
             />
         </Container>
     );

@@ -14,12 +14,20 @@ exports.getStatus = async (req, res) => {
 // Add cheese
 exports.addCheese = async (req, res) => {
     try {
-        const { name, image, pricePerKilo, colour } = req.body;
+        const { name, pricePerKilo, colour } = req.body;
 
-        if (!name || !image || !pricePerKilo || !colour) {
+        if (!name || !pricePerKilo || !colour) {
             return res
                 .status(400)
                 .json({ error: "Missing required parameters" });
+        }
+
+        let image = null;
+
+        if (req.file) {
+            const uniqueFileName = req.file.filename;
+            const baseURL = req.protocol + "://" + req.get("host");
+            image = `${baseURL}/uploads/${uniqueFileName}`;
         }
 
         const newCheese = await Cheese.create({

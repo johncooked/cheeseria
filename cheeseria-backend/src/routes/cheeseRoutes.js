@@ -23,7 +23,7 @@ const upload = multer({ storage: storage });
 router.get("/status", cheeseController.getStatus);
 
 // Add cheese
-router.post("/", cheeseController.addCheese);
+router.post("/", upload.single("image"), cheeseController.addCheese);
 
 // Find cheeses
 router.get("/", cheeseController.getCheeses);

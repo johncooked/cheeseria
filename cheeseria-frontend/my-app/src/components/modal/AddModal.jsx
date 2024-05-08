@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Alert } from "react-bootstrap";
 
-const EditModal = ({ show, handleClose, cheese }) => {
+const AddModal = ({ show, handleClose, setFormSubmitted }) => {
+    const [errorMessage, setErrorMessage] = useState("");
     const [formData, setFormData] = useState({
-        name: cheese.name,
-        pricePerKilo: cheese.pricePerKilo,
-        colour: cheese.colour,
+        name: "",
+        pricePerKilo: "",
+        colour: "",
         image: null,
     });
 
@@ -37,25 +38,30 @@ const EditModal = ({ show, handleClose, cheese }) => {
             formDataToSend.append("colour", formData.colour);
             formDataToSend.append("image", formData.image);
 
-            const response = await fetch(`/api/cheese/${cheese.id}`, {
-                method: "PUT",
+            const response = await fetch("/api/cheese", {
+                method: "POST",
                 body: formDataToSend,
             });
 
             if (response.ok) {
                 handleClose();
+                setFormSubmitted(true);
+                setErrorMessage("");
             } else {
-                console.error("Failed to update cheese");
+                const resErr = await response.json();
+                setErrorMessage(resErr.error || "Failed to add cheese");
+
+                console.error("Failed to add cheese");
             }
         } catch (error) {
-            console.error("Error updating cheese:", error);
+            console.error("Error adding cheese:", error);
         }
     };
 
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Edit Cheese</Modal.Title>
+                <Modal.Title>Add Cheese</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
@@ -106,9 +112,11 @@ const EditModal = ({ show, handleClose, cheese }) => {
                             onChange={handleChange}
                         />
                     </Form.Group>
-
+                    {errorMessage && (
+                        <Alert variant="danger">{errorMessage}</Alert>
+                    )}
                     <Button variant="primary" type="submit">
-                        Save Changes
+                        Add Cheese
                     </Button>
                 </Form>
             </Modal.Body>
@@ -116,4 +124,4 @@ const EditModal = ({ show, handleClose, cheese }) => {
     );
 };
 
-export default EditModal;
+export default AddModal;

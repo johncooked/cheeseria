@@ -2,23 +2,31 @@ import React, { useState } from "react";
 import "./CheeseCard.css";
 import { Card, Button, Form } from "react-bootstrap";
 import EditModal from "../modal/EditModal";
+import DeleteModal from "../modal/DeleteModal";
 
 const CheeseCard = ({ cheese, onClick, isAdmin, setFormSubmitted }) => {
     const { name, image, pricePerKilo, colour } = cheese;
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-    console.log("name: ", name);
-    console.log("imgUrl: ", image);
-    console.log("pricePerKilo: ", pricePerKilo);
-    console.log("colour: ", colour);
-
-    const handleEdit = (e) => {
+    const handleButtonClick = (e, whichForm) => {
         e.stopPropagation();
-        setShowEditModal(true);
+
+        switch (whichForm) {
+            case "edit":
+                setShowEditModal(true);
+                break;
+            case "delete":
+                setShowDeleteModal(true);
+                break;
+            default:
+                break;
+        }
     };
 
-    const handleCloseEditModal = () => {
+    const handleCloseModal = () => {
         setShowEditModal(false);
+        setShowDeleteModal(false);
         setFormSubmitted(true);
     };
 
@@ -56,11 +64,15 @@ const CheeseCard = ({ cheese, onClick, isAdmin, setFormSubmitted }) => {
                             <Button
                                 variant="success"
                                 size="sm"
-                                onClick={handleEdit}
+                                onClick={(e) => handleButtonClick(e, "edit")}
                             >
                                 Edit
                             </Button>{" "}
-                            <Button variant="danger" size="sm">
+                            <Button
+                                variant="danger"
+                                size="sm"
+                                onClick={(e) => handleButtonClick(e, "delete")}
+                            >
                                 Delete
                             </Button>
                         </div>
@@ -69,7 +81,12 @@ const CheeseCard = ({ cheese, onClick, isAdmin, setFormSubmitted }) => {
             </Card>
             <EditModal
                 show={showEditModal}
-                handleClose={handleCloseEditModal}
+                handleClose={handleCloseModal}
+                cheese={cheese}
+            />
+            <DeleteModal
+                show={showDeleteModal}
+                handleClose={handleCloseModal}
                 cheese={cheese}
             />
         </>
