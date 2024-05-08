@@ -1,7 +1,5 @@
 # PZ Cheeseria
 
-Coding challenge for PZ
-
 ## Overview
 
 This repository contains the code for a fullstack development test as part of the hiring process for Patient Zero. The test involves creating a web application with both frontend and backend components. The goal is to assess the candidate's skills in building a functional web application using modern web development technologies.
