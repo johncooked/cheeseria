@@ -9,8 +9,13 @@ function HeroSection() {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src="https://via.placeholder.com/1600x800"
+                            src="https://www.spicesinmydna.com/wp-content/uploads/2018/11/Chocolate-and-Bourbon-Cheeseboard-10.jpg"
                             alt="First slide"
+                            style={{
+                                height: "50vh",
+                                objectFit: "cover",
+                                overflow: "hidden",
+                            }}
                         />
                         <Carousel.Caption>
                             <h1>Welcome to the PZ cheese catalogue!</h1>

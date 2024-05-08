@@ -9,31 +9,31 @@ const seedCheeses = async () => {
             await Cheese.bulkCreate([
                 {
                     name: "Cheddar",
-                    image: "cheddar.jpg",
+                    image: null,
                     pricePerKilo: 10.99,
                     colour: "Yellow",
                 },
                 {
                     name: "Brie",
-                    image: "brie.jpg",
+                    image: null,
                     pricePerKilo: 15.99,
                     colour: "White",
                 },
                 {
                     name: "Gouda",
-                    image: "gouda.jpg",
+                    image: null,
                     pricePerKilo: 12.99,
                     colour: "Yellow",
                 },
                 {
                     name: "Blue Cheese",
-                    image: "blue_cheese.jpg",
+                    image: null,
                     pricePerKilo: 20.99,
                     colour: "Blue",
                 },
                 {
                     name: "Parmesan",
-                    image: "parmesan.jpg",
+                    image: null,
                     pricePerKilo: 18.99,
                     colour: "Yellow",
                 },

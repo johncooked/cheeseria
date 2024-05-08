@@ -3,9 +3,14 @@ import "./CheeseCard.css";
 import { Card, Button, Form } from "react-bootstrap";
 import EditModal from "../modal/EditModal";
 
-const CheeseCard = ({ cheese, onClick, isAdmin, selected, onSelectChange }) => {
-    const { name, img, pricePerKilo, colour } = cheese;
+const CheeseCard = ({ cheese, onClick, isAdmin, setFormSubmitted }) => {
+    const { name, image, pricePerKilo, colour } = cheese;
     const [showEditModal, setShowEditModal] = useState(false);
+
+    console.log("name: ", name);
+    console.log("imgUrl: ", image);
+    console.log("pricePerKilo: ", pricePerKilo);
+    console.log("colour: ", colour);
 
     const handleEdit = (e) => {
         e.stopPropagation();
@@ -14,6 +19,7 @@ const CheeseCard = ({ cheese, onClick, isAdmin, selected, onSelectChange }) => {
 
     const handleCloseEditModal = () => {
         setShowEditModal(false);
+        setFormSubmitted(true);
     };
 
     return (
@@ -28,9 +34,15 @@ const CheeseCard = ({ cheese, onClick, isAdmin, selected, onSelectChange }) => {
             <Card onClick={() => onClick(cheese)}>
                 <Card.Img
                     variant="top"
-                    src={img || "https://via.placeholder.com/150"}
+                    src={image || "https://via.placeholder.com/150"}
                     alt={name}
+                    style={{
+                        height: "200px",
+                        objectFit: "cover",
+                        overflow: "hidden",
+                    }}
                 />
+
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>

@@ -17,16 +17,28 @@ const Home = () => {
     const { isLoggedIn } = useAuth();
     const [showCalc, setShowCalc] = useState(false);
     const [selectedCheese, setSelectedCheese] = useState(null);
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     const handleCardClick = (cheese) => {
         console.log(cheese);
 
+        // Check if the clicked cheese is already in recentlyViewed
+        const index = recentlyViewed.findIndex((item) => item.id === cheese.id);
+
+        // If the cheese is already in recentlyViewed, remove it from its current position
+        if (index !== -1) {
+            recentlyViewed.splice(index, 1);
+        }
+
+        // Add the clicked cheese to the beginning of recentlyViewed
         const updatedRecentlyViewed = [cheese, ...recentlyViewed.slice(0, 4)];
 
+        // Limit the recentlyViewed list to 5 items
         if (updatedRecentlyViewed.length > 5) {
             updatedRecentlyViewed.pop();
         }
 
+        // Update state with the updated recentlyViewed list
         setRecentlyViewed(updatedRecentlyViewed);
         setSelectedCheese(cheese);
         setShowCalc(true);
@@ -43,7 +55,6 @@ const Home = () => {
         const fetchCheeses = async () => {
             try {
                 const res = await fetch("/api/cheese");
-                console.log(res);
                 if (!res.ok) {
                     throw new Error("Failed to fetch cheeses");
                 }
@@ -51,10 +62,13 @@ const Home = () => {
                 setCheeses(data);
             } catch (err) {
                 console.error("Error fetching cheeses:", err);
+            } finally {
+                setFormSubmitted(false);
             }
         };
+
         fetchCheeses();
-    }, []);
+    }, [formSubmitted]);
 
     // Render placeholder cards
     const generateCols = (count) => {
@@ -107,7 +121,7 @@ const Home = () => {
             </Container>
             <Container className="mb-3" style={{ paddingTop: "40px" }}>
                 <h2 className="me-auto p-2" id="all cheeses">
-                    All cheeses
+                    All cheeses ({cheeses.length})
                 </h2>
             </Container>
             {isLoggedIn && (
@@ -127,11 +141,13 @@ const Home = () => {
             <Container>
                 <Row xs={1} md={2} lg={5} className="g-4">
                     {cheeses.map((cheese) => (
-                        <Col key={cheese.id}>
+                        <Col>
                             <CheeseCard
+                                key={cheese.id}
                                 cheese={cheese}
                                 onClick={handleCardClick}
                                 isAdmin={isLoggedIn}
+                                setFormSubmitted={setFormSubmitted}
                             />
                         </Col>
                     ))}

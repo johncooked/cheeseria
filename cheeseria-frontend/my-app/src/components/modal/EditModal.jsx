@@ -6,44 +6,41 @@ const EditModal = ({ show, handleClose, cheese }) => {
         name: cheese.name,
         pricePerKilo: cheese.pricePerKilo,
         colour: cheese.colour,
-        image: null, // For storing the selected image file
-        // Add other cheese details here
+        image: null,
     });
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
-        setFormData({
-            ...formData,
-            [name]: name === "image" ? files[0] : value,
-        });
+        if (name === "image") {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                image: files[0],
+            }));
+        } else {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [name]: value,
+            }));
+        }
     };
-
-    const data = {
-        name: "Cheddar",
-        image: "https://example.com/cheddar.jpg",
-        pricePerKilo: 10.99,
-        colour: "Yellow",
-    };
-
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
+            const headers = new Headers();
+            headers.append("Content-Type", "multipart/form-data");
+
             const formDataToSend = new FormData();
             formDataToSend.append("name", formData.name);
             formDataToSend.append("pricePerKilo", formData.pricePerKilo);
             formDataToSend.append("colour", formData.colour);
-            if (formData.image) {
-                formDataToSend.append("image", formData.image);
-            }
+            console.log(formData.image);
+            formDataToSend.append("image", formData.image);
 
             const response = await fetch(`/api/cheese/${cheese.id}`, {
                 method: "PUT",
-                headers: headers,
-                body: JSON.stringify(data),
+                body: formDataToSend,
             });
 
             if (response.ok) {

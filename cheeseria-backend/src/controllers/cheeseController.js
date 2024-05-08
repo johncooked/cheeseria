@@ -14,7 +14,6 @@ exports.getStatus = async (req, res) => {
 // Add cheese
 exports.addCheese = async (req, res) => {
     try {
-        console.log("Request body:", req.body);
         const { name, image, pricePerKilo, colour } = req.body;
 
         if (!name || !image || !pricePerKilo || !colour) {
@@ -38,7 +37,7 @@ exports.addCheese = async (req, res) => {
 };
 
 // Find cheeses
-exports.findCheeses = async (req, res) => {
+exports.getCheeses = async (req, res) => {
     try {
         const { offset = 0, limit = 10 } = req.query;
 
@@ -58,7 +57,14 @@ exports.findCheeses = async (req, res) => {
 exports.updateCheese = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, image, pricePerKilo, colour } = req.body;
+        const { name, pricePerKilo, colour } = req.body;
+        let image = null;
+
+        if (req.file) {
+            const uniqueFileName = req.file.filename;
+            const baseURL = req.protocol + "://" + req.get("host");
+            image = `${baseURL}/uploads/${uniqueFileName}`;
+        }
 
         const cheese = await Cheese.findByPk(id);
         if (!cheese) {
@@ -66,7 +72,7 @@ exports.updateCheese = async (req, res) => {
         }
 
         cheese.name = name;
-        cheese.image = image;
+        cheese.image = image; // update image path
         cheese.pricePerKilo = pricePerKilo;
         cheese.colour = colour;
 

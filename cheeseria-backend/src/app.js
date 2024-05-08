@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const cheeseRoutes = require("./routes/cheeseRoutes");
 const sequelize = require("./config/database");
@@ -21,10 +22,11 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Route setup
 app.use("/cheese", cheeseRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Error handling
 app.use((err, req, res, next) => {
-    console.error(error.stack);
+    console.error(err.stack);
     res.status(500).json({ error: "Internal Server Error" });
 });
 
