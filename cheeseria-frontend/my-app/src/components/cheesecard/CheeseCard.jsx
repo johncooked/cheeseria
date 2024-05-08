@@ -24,14 +24,15 @@ const CheeseCard = ({ cheese, onClick, isAdmin, setFormSubmitted }) => {
 
     return (
         <>
-            {isAdmin && (
-                <Form.Check
-                    type="checkbox"
-                    className="d-flex m-1"
-                    style={{ justifyContent: "end" }}
-                />
-            )}
             <Card onClick={() => onClick(cheese)}>
+                {" "}
+                {isAdmin && (
+                    <Form.Check
+                        type="checkbox"
+                        className="d-flex m-1"
+                        style={{ justifyContent: "end" }}
+                    />
+                )}
                 <Card.Img
                     variant="top"
                     src={image || "https://via.placeholder.com/150"}
@@ -42,7 +43,6 @@ const CheeseCard = ({ cheese, onClick, isAdmin, setFormSubmitted }) => {
                         overflow: "hidden",
                     }}
                 />
-
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
