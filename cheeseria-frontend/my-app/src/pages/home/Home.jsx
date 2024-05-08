@@ -8,18 +8,19 @@ import PlaceholderCheeseCard from "../../components/placeholder/PlaceholderChees
 import PriceCalculator from "../../components/calculator/PriceCalculator";
 import AddModal from "../../components/modal/AddModal";
 
+/**
+ * Home component renders the home page with cheese cards, recently viewed section,
+ * placeholder cards, and price calculator modal.
+ *
+ * @component
+ * @returns {JSX.Element} Home component.
+ */
 const Home = () => {
-    // Current cheeses fetched from api
     const [cheeses, setCheeses] = useState([]);
-    // Keep track of the 5 most recently viewed cheeses
-    // Only track the current instance
     const [recentlyViewed, setRecentlyViewed] = useState([]);
-    // Track admin auth state
     const { isLoggedIn } = useAuth();
     const [selectedCheese, setSelectedCheese] = useState(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
-
-    // Modal controls
     const [showCalc, setShowCalc] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
 
@@ -78,7 +79,7 @@ const Home = () => {
         fetchCheeses();
     }, [formSubmitted]);
 
-    // Render placeholder cards
+    // Function to generate placeholder cards
     const generateCols = (count) => {
         return Array.from({ length: count }).map((_, idx) => (
             <Col key={idx}>

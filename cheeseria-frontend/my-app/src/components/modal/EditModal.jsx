@@ -106,7 +106,6 @@ const EditModal = ({ show, handleClose, cheese }) => {
                             onChange={handleChange}
                         />
                     </Form.Group>
-
                     <Button variant="primary" type="submit">
                         Save Changes
                     </Button>

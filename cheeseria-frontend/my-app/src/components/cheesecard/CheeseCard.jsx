@@ -4,6 +4,18 @@ import { Card, Button, Form } from "react-bootstrap";
 import EditModal from "../modal/EditModal";
 import DeleteModal from "../modal/DeleteModal";
 
+/**
+ * Renders a card component displaying details of a cheese.
+ * Allows editing and deletion of the cheese.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.cheese - The cheese object containing details like name, image, price per kilo, and colour.
+ * @param {Function} props.onClick - Callback function to handle click event on the card.
+ * @param {boolean} props.isAdmin - Indicates whether the user is an admin.
+ * @param {Function} props.setFormSubmitted - Callback function to handle form submission event.
+ * @returns {JSX.Element} CheeseCard component.
+ */
 const CheeseCard = ({ cheese, onClick, isAdmin, setFormSubmitted }) => {
     const { name, image, pricePerKilo, colour } = cheese;
     const [showEditModal, setShowEditModal] = useState(false);

@@ -10,7 +10,6 @@ function TopNav() {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
 
-    // Simulate login
     const { isLoggedIn, login, logout } = useAuth();
 
     const handleLogin = (e) => {
@@ -85,13 +84,11 @@ function TopNav() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
             <LoginModal
                 show={showLoginModal}
                 handleLogin={handleLogin}
                 handleClose={() => setShowLoginModal(false)}
             ></LoginModal>
-
             <SignupModal
                 show={showSignupModal}
                 handleClose={() => setShowSignupModal(false)}

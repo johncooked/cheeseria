@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 
+/**
+ * AddModal component for adding a new cheese.
+ * If I had more time, I would refactor the modals into a single reusable CustomModal component
+ * to handle various modal content based on context
+ * This would involve passing children components or props to customize the modal's content and behavior,
+ * making it more flexible and easier to maintain.
+ *
+ * @param {Object} props - Component properties.
+ * @param {boolean} props.show - Control the visibility of the modal.
+ * @param {Function} props.handleClose - Function to handle modal close event.
+ * @param {Function} props.setFormSubmitted - Function to set form submission status.
+ * @returns {JSX.Element} - The rendered component.
+ */
 const AddModal = ({ show, handleClose, setFormSubmitted }) => {
     const [errorMessage, setErrorMessage] = useState("");
     const [formData, setFormData] = useState({
@@ -10,6 +23,10 @@ const AddModal = ({ show, handleClose, setFormSubmitted }) => {
         image: null,
     });
 
+    /**
+     * Handle input change event.
+     * @param {Object} e - Input change event object.
+     */
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         if (name === "image") {
@@ -25,6 +42,10 @@ const AddModal = ({ show, handleClose, setFormSubmitted }) => {
         }
     };
 
+    /**
+     * Handle form submission.
+     * @param {Object} e - Form submission event object.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
 

@@ -4,6 +4,16 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
 
+/**
+ * Price Calculator component for calculating cheese price.
+ * If more time were spent on it, it could be enhanced to use an off-canvas component triggered by a floating side button.
+ * This enhancement could allow users to add multiple types of cheese and calculate the total price if they were to buy them.
+ * @param {Object} props - Component props.
+ * @param {boolean} props.show - Indicates whether the modal should be displayed.
+ * @param {function} props.onHide - Function to handle modal close event.
+ * @param {Object} props.cheese - Cheese object with pricePerKilo property.
+ * @returns {JSX.Element} PriceCalculator component.
+ */
 const PriceCalculator = ({ show, onHide, cheese }) => {
     const [weight, setWeight] = useState(0);
     const [cost, setCost] = useState(0);
@@ -16,6 +26,9 @@ const PriceCalculator = ({ show, onHide, cheese }) => {
         }
     }, [show]);
 
+    /**
+     * Handles the calculation of cheese cost based on weight.
+     */
     const handleCalculate = () => {
         if (cheese) {
             const calculatedCost = cheese.pricePerKilo * weight;
