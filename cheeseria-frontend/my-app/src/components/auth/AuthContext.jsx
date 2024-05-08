@@ -10,6 +10,7 @@ const AuthContext = createContext();
  * Provider component for managing authentication state.
  * This project only uses client-side authentication for simplicity.
  * I would create an actual auth system in the backend if i were to spend more time.
+ *
  * @param {object} props - The props for the AuthProvider component.
  * @param {React.ReactNode} props.children - The child components to be wrapped by the AuthProvider.
  * @returns {JSX.Element} A React element representing the AuthProvider component.
