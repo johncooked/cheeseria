@@ -42,7 +42,6 @@ const Home = () => {
             updatedRecentlyViewed.pop();
         }
 
-        // Update state with the updated recentlyViewed list
         setRecentlyViewed(updatedRecentlyViewed);
         setSelectedCheese(cheese);
         setShowCalc(true);
