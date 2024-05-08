@@ -32,3 +32,5 @@ This repository contains the code for the coding challenge. The backend will aut
 5. Start the front-end with `npm start`
 6. Start the back-end with `node app.js` after navigating to `cheeseria-backend/src`.
 7. Access the application in your web browser at the specified URL.
+
+### Docker
