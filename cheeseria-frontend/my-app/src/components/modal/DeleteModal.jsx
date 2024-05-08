@@ -1,12 +1,16 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 const DeleteModal = ({ show, handleClose, cheese }) => {
     const handleDeleteCheese = async () => {
         try {
-            const response = await fetch(`/api/cheese/${cheese.id}`, {
-                method: "DELETE",
-            });
+            const response = await fetch(
+                `${API_BASE_URL}/cheese/${cheese.id}`,
+                {
+                    method: "DELETE",
+                }
+            );
             if (!response.ok) {
                 throw new Error("Failed to delete cheese");
             }

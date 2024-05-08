@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Alert } from "react-bootstrap";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 /**
  * AddModal component for adding a new cheese.
@@ -59,7 +60,7 @@ const AddModal = ({ show, handleClose, setFormSubmitted }) => {
             formDataToSend.append("colour", formData.colour);
             formDataToSend.append("image", formData.image);
 
-            const response = await fetch("/api/cheese", {
+            const response = await fetch(`${API_BASE_URL}/cheese`, {
                 method: "POST",
                 body: formDataToSend,
             });

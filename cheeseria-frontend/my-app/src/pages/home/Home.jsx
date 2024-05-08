@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
-
 import { useAuth } from "../../components/auth/AuthContext";
+import { API_BASE_URL } from "../../config/apiConfig";
+
 import HeroSection from "../../components/hero/HeroSection";
 import CheeseCard from "../../components/cheesecard/CheeseCard";
 import PlaceholderCheeseCard from "../../components/placeholder/PlaceholderCheeseCard";
@@ -81,7 +82,7 @@ const Home = () => {
     useEffect(() => {
         const fetchCheeses = async () => {
             try {
-                const res = await fetch("/api/cheese");
+                const res = await fetch(`${API_BASE_URL}/cheese`);
                 if (!res.ok) {
                     throw new Error("Failed to fetch cheeses");
                 }

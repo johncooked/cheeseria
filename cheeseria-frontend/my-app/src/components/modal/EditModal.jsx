@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { API_BASE_URL } from "../../config/apiConfig";
 
 const EditModal = ({ show, handleClose, cheese }) => {
     const [formData, setFormData] = useState({
@@ -37,10 +38,13 @@ const EditModal = ({ show, handleClose, cheese }) => {
             formDataToSend.append("colour", formData.colour);
             formDataToSend.append("image", formData.image);
 
-            const response = await fetch(`/api/cheese/${cheese.id}`, {
-                method: "PUT",
-                body: formDataToSend,
-            });
+            const response = await fetch(
+                `${API_BASE_URL}/cheese/${cheese.id}`,
+                {
+                    method: "PUT",
+                    body: formDataToSend,
+                }
+            );
 
             if (response.ok) {
                 handleClose();
