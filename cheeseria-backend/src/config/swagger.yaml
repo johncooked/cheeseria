@@ -1,146 +1,155 @@
 openapi: 3.0.0
 info:
-    title: Swagger Cheese - OpenAPI 3.0
-    description: |-
-        This is the backend server for Cheeseria as part of the coding challenge for Pazient Zero.
+  title: Swagger Cheese - OpenAPI 3.0
+  description: |-
+    This is the backend server for Cheeseria as part of the coding challenge for Pazient Zero.
 
-        References:
-        - [Website about cheese](https://www.cheese.com/)
-        - [Blog about creating an API on Postman](https://blog.postman.com/how-to-create-a-rest-api-with-node-js-and-express/)
-    version: 1.0.0
+    References:
+    - [Website about cheese](https://www.cheese.com/)
+    - [Blog about creating an API on Postman](https://blog.postman.com/how-to-create-a-rest-api-with-node-js-and-express/)
+    
+    If I were to spend more time on this project I would work on:
+    - Error handling and logging 
+    - User/Admin authentication
+    - Batch operations
+    - Features such as Popular cheeses or Smart Recommendations
+    - Search/Filter based on prices, colour, etc...
+    - Pagination
+    - Reviews & Ratings
+    - Admin features such as Analytics(sales, user interactions)
+    
+  version: 1.0.0
 servers:
-    - url: http://localhost:3000/docs/
+    - url: http://localhost:3001/cheese
 tags:
     - name: cheese
       description: Everything about Cheese
 paths:
-    /cheese/status:
-        get:
-            tags:
-                - cheese
-            summary: Test endpoint to check if the server is working
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    Status:
-                                        type: string
-                                        example: Running ok
-    /cheese:
-        get:
-            tags:
-                - cheese
-            summary: Get a list of cheeses
-            parameters:
-                - in: query
-                  name: offset
-                  schema:
-                      type: integer
-                      minimum: 0
-                  description: The number of items to skip before starting to collect the result set
-                - in: query
-                  name: limit
-                  schema:
-                      type: integer
-                      minimum: 1
-                      maximum: 100
-                  description: The maximum number of items to return
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: "#/components/schemas/Cheese"
-        post:
-            tags:
-                - cheese
-            summary: Add a new cheese
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/NewCheese"
-            responses:
-                "201":
-                    description: Created
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Cheese"
-    /cheese/{id}:
-        put:
-            tags:
-                - cheese
-            summary: Update a cheese
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  schema:
-                      type: integer
-                  description: ID of the cheese to update
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/NewCheese"
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Cheese"
-        delete:
-            tags:
-                - cheese
-            summary: Delete a cheese
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  schema:
-                      type: integer
-                  description: ID of the cheese to delete
-            responses:
-                "204":
-                    description: No Content
+  /cheese/status:
+    get:
+      tags:
+        - cheese
+      summary: Get API status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Status:
+                    type: string
+                    example: Running ok
+  /cheese:
+    get:
+      tags:
+        - cheese
+      summary: Get cheeses
+      parameters:
+        - name: offset
+          in: query
+          description: Number of items to skip
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          description: Max number of items to return
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cheese'
+    post:
+      tags:
+        - cheese
+      summary: Add a new cheese
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NewCheese'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cheese'
+  /cheese/{id}:
+    put:
+      tags:
+        - cheese
+      summary: Update a cheese
+      parameters:
+        - name: id
+          in: path
+          description: ID of the cheese to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NewCheese'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cheese'
+    delete:
+      tags:
+        - cheese
+      summary: Delete a cheese
+      parameters:
+        - name: id
+          in: path
+          description: ID of the cheese to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
 components:
-    schemas:
-        Cheese:
-            type: object
-            properties:
-                id:
-                    type: integer
-                name:
-                    type: string
-                image:
-                    type: string
-                pricePerKilo:
-                    type: number
-                colour:
-                    type: string
-        NewCheese:
-            type: object
-            properties:
-                name:
-                    type: string
-                    example: Cheddar
-                image:
-                    type: string
-                    example: cheddar.jpg
-                pricePerKilo:
-                    type: number
-                    example: 10.99
-                colour:
-                    type: string
-                    example: Yellow
+  schemas:
+    Cheese:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        image:
+          type: string
+        pricePerKilo:
+          type: number
+        colour:
+          type: string
+    NewCheese:
+      type: object
+      properties:
+        name:
+          type: string
+        pricePerKilo:
+          type: number
+        colour:
+          type: string
+        image:
+          type: string
+          format: binary
