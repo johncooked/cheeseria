@@ -16,6 +16,18 @@ import AddModal from "../../components/modal/AddModal";
  * @returns {JSX.Element} Home component.
  */
 const Home = () => {
+    /**
+     * If I had more time, I would've looked into a better way to manage these states,
+     * maybe create an initial state object or further reducing it to smaller components.
+     * If I had a better planning process, I would have been able to understand
+     * how the data will flow throughout the application and better design the relationships
+     * between the components.
+     *
+     * Another thing i could do is Expanding the cheese data model to include additional details
+     * like description, country of origin, and common recipes. With this enhanced data,
+     * I could transform the website into a multi-page application, dedicating separate pages to each cheese.
+     * This approach reduces the reliance on modals and provides users with a more comprehensive view of each cheese.
+     */
     const [cheeses, setCheeses] = useState([]);
     const [recentlyViewed, setRecentlyViewed] = useState([]);
     const { isLoggedIn } = useAuth();
@@ -59,7 +71,13 @@ const Home = () => {
         setSelectedCheese(null);
     };
 
-    // Fetch data from API
+    /**
+     * Fetch data from API
+     * If the application were to use a paid API key,
+     * I would implement mechanisms to protect the key, avoiding hardcoding it within the application.
+     * Techniques such as environment variables, server-side authentication, or token-based authentication
+     * could be explored to securely manage and utilize the API key, ensuring its confidentiality and integrity.
+     */
     useEffect(() => {
         const fetchCheeses = async () => {
             try {
