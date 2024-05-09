@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the code for the coding challenge. The backend will automatically create the first 5 cheeses upon start up with no images. Click on the cheese you are interested in and the price calculator will popup. Login as Admin using `admin` and `password` to create, update and delete cheeses. To add images to the cheeses, use the edit button or you can delete the cheese entry and add it again with the image. I've included some images that you can use in `Cheese Images` folder.
+This repository hosts the code for the coding challenge. Upon startup, the backend will automatically generate the initial five cheese entries without images. Simply click on a cheese to activate the price calculator. For administrative access, log in as `admin` with the password `password` to manage cheese entries – create, update, or delete them. To attach images to cheeses, either utilize the edit function or delete and re-add the cheese entry with the desired image. Feel free to utilize the images provided in the 'Cheese Images' folder.
 
 ## Tech Stack
 
