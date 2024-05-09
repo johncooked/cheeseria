@@ -38,10 +38,10 @@ This repository hosts the code for the coding challenge. Upon startup, the backe
 2. Clone the repository to your local machine.
 3. Navigate to the directory with the Dockerfile.
 4. Build the image with `docker build -t <image_name:version> <directory_of_dockerfile>`.
-  -   For example, `docker build -t cheeseria_image:latest .`
+  -   For example, `"docker build -t cheeseria_image:latest ."`.
 6. You can check if the image was built successfully with `docker images`.
 8. Start the container with `docker run -p 4000:4000 --name <container_name> <image_name:version>`
-  -   For example, `docker run -p 4000:4000 --name cheeseria cheeseria_image:latest`.
+  -   For example, `"docker run -p 4000:4000 --name cheeseria cheeseria_image:latest"`.
 NOTE: You must specify the port otherwise you will not be able to access the static page.
 
 ### Links
