@@ -20,7 +20,7 @@ info:
 
     version: 1.0.0
 servers:
-    - url: http://localhost:3001/cheese
+    - url: http://localhost:4000/cheese
 tags:
     - name: cheese
       description: Everything about Cheese

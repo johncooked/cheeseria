@@ -23,14 +23,14 @@ This repository contains the code for the coding challenge. The backend will aut
 
 ## Run Instructions
 
-### Locally
+### Dev environment
 
 1. Have Node v20.10.0 installed.
 2. Clone the repository to your local machine.
 3. Navigate to the project directories `cheeseria-backend` and `cheeseria-frontend/my-app`.
 4. Install dependencies using `npm install` for both frontend and backend.
-5. Start the front-end with `npm start`
-6. Start the back-end with `node app.js` after navigating to `cheeseria-backend/src`.
+5. Start the back-end with `node app.js` after navigating to `cheeseria-backend/src`.
+6. Start the front-end with `npm start`.
 7. Access the application in your web browser at the specified URL.
 
 ### Docker
