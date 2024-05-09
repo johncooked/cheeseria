@@ -2,7 +2,9 @@
 
 ## Overview
 
-This repository hosts the code for the coding challenge. Upon startup, the backend will automatically generate the initial five cheese entries without images. Simply click on a cheese to activate the price calculator. For administrative access, log in as `admin` with the password `password` to manage cheese entries – create, update, or delete them. To attach images to cheeses, either utilize the edit function or delete and re-add the cheese entry with the desired image. Feel free to utilize the images provided in the 'Cheese Images' folder.
+This repository hosts the code for the coding challenge. Upon startup, the backend will automatically generate the initial five cheese entries without images. Simply click on a cheese to activate the price calculator. For administrative access, log in as `admin` with the password `password` to manage cheese entries – create, update, or delete them. 
+
+I was not able to figure out how to include the images on startup so you'll have to do that after the database has been created. To attach images to cheeses, either utilize the edit function or delete and re-add the cheese entry with the desired image. Feel free to utilize the images provided in the 'Cheese Images' folder.
 
 ## Tech Stack
 
@@ -13,10 +15,10 @@ This repository hosts the code for the coding challenge. Upon startup, the backe
 
 ## Summary of Improvements if I Had More Time
 
--   **State Management Optimization:** Consider creating an initial state object or breaking down state into smaller components for better manageability and scalability.
+-   **State Management Optimization:** Consider creating an initial state object or breaking down the state into smaller components for better manageability and scalability.
 -   **Component Refinement:** Further refine components and their relationships through better planning to ensure efficient data flow and component design.
--   **Modal Refinement:** Explore alternative modal designs such as off-canvas components triggered by floating side buttons to enhance user interaction and allow for multiple cheese selection and price calculation.
--   **Data Enrichment:** Expand the cheese data model to include additional details like description, country of origin, and common recipes, enabling the transformation of the application into a multipage one.
+-   **Modal Refinement:** Explore alternative modal designs such as off-canvas components triggered by floating side buttons to enhance user interaction and allow for multiple cheese selections and price calculation.
+-   **Data Enrichment:** Expand the cheese data model to include additional details like description, country of origin, and common recipes, enabling the transformation of the application into a multi-page one.
 -   **User Experience Enhancement:** Improve user experience by reducing reliance on modals and providing users with comprehensive cheese information on separate pages, enhancing exploration and engagement.
 -   **Feature Expansion:** Introduce features like search, filtering, and sorting based on enriched cheese data, further enhancing usability and functionality.
 -   **API Key Protection:** Techniques such as environment variables, server-side authentication, or token-based authentication could be explored to securely manage and utilize the API key, ensuring its confidentiality and integrity.
