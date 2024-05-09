@@ -22,9 +22,6 @@ This repository contains the code for the coding challenge. The backend will aut
 -   **API Key Protection:** Techniques such as environment variables, server-side authentication, or token-based authentication could be explored to securely manage and utilize the API key, ensuring its confidentiality and integrity.
 
 ## Run Instructions
-### Links
-**Webpage Link:** http://localhost:4000
-**Swagger Link:** http://localhost:4000/docs
 
 ### Dev environment
 
@@ -40,6 +37,18 @@ This repository contains the code for the coding challenge. The backend will aut
 1. Have Docker installed.
 2. Clone the repository to your local machine.
 3. Navigate to the directory with the Dockerfile.
-4. Build the image with `docker build -t <image_name:version>`. For example, `docker build -t cheeseria_image:latest`.
-5. You can check if the image was built successfully with `docker images`.
-6. Start the container with `docker run -p 4000:4000 --name <container_name> <image_name:version>`. For example, `docker run -p 4000:4000 --name cheeseria cheeseria_image:latest`. NOTE: You must specify the port otherwise you will not be able to access the static page.
+4. Build the image with
+  -  `docker build -t <image_name:version>`.
+  For example
+  -  `docker build -t cheeseria_image:latest`.
+6. You can check if the image was built successfully with
+  -  `docker images`
+8. Start the container with
+  -  `docker run -p 4000:4000 --name <container_name> <image_name:version>`
+For example
+  -  `docker run -p 4000:4000 --name cheeseria cheeseria_image:latest`
+NOTE: You must specify the port otherwise you will not be able to access the static page.
+
+### Links
+-  **Webpage Link:** http://localhost:4000
+-  **Swagger Link:** http://localhost:4000/docs
