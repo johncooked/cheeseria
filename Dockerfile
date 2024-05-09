@@ -1,4 +1,4 @@
-# Build frontend and run tests
+# Build frontend
 FROM node:20.10.0 AS frontend-builder
 WORKDIR /app/cheeseria-frontend
 COPY cheeseria-frontend/my-app/package.json cheeseria-frontend/my-app/package-lock.json ./
@@ -6,7 +6,7 @@ RUN npm install
 COPY cheeseria-frontend/my-app ./
 RUN npm run build
 
-# Build backend
+# Prepare backend
 FROM node:20.10.0 AS backend-builder
 WORKDIR /app/cheeseria-backend
 COPY cheeseria-backend/package.json cheeseria-backend/package-lock.json ./
